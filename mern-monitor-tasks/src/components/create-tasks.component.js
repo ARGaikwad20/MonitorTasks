@@ -17,13 +17,14 @@ export default class CreateTasks extends Component {
             featurename: '',
             description: '',
             status: '',
-            devname: ''
+            devname: '',
+            statusOptionsArr: ['Default','ToDo', 'In_progress', 'Done']
           }
     }
 
     componentDidMount() {
         this.setState({
-            status: 'Default state'
+            status: 'Default'
         })
     }
 
@@ -95,13 +96,21 @@ export default class CreateTasks extends Component {
                     </div>
 
                     <div className="form-group"> 
-                    <label>Status: </label>
-                    <input  type="text"
-                        required
-                        className="form-control"
-                        value={this.state.status}
-                        onChange={this.onChangeStatus}
-                        />
+                            <label>Status:  </label>
+                            <select ref="userInput"
+                                required
+                                className="form-control"
+                                value={this.state.status}
+                                onChange={this.onChangeStatus}>
+                                {
+                                    this.state.statusOptionsArr.map(function(feature) {
+                                    return <option 
+                                        key={feature}
+                                        value={feature}>{feature}
+                                        </option>;
+                                    })
+                                }
+                            </select>
                     </div>
                     
                     <div className="form-group">
